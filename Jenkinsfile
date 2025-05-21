@@ -30,13 +30,13 @@ pipeline {
         } 
         
         stage('Deploy') { 
-            steps { 
-                sh 'echo "Deploying the application..."' 
-                sh "ssh user@remote-server 'docker pull ${DOCKER_HUB_CREDENTIALS_USR}/atelier4_jenkins:latest'" 
-                sh "ssh user@remote-server 'docker stop atelier4_jenkins || true'" 
-                sh "ssh user@remote-server 'docker rm atelier4_jenkins || true'" 
-                sh "ssh user@remote-server 'docker run -d -p 5000:5000 --name atelier4_jenkins ${DOCKER_HUB_CREDENTIALS_USR}/atelier4_jenkins:latest'" 
-            } 
+            steps {
+        sh 'echo "Deploying the application locally..."'
+        sh "docker pull ${DOCKER_HUB_CREDENTIALS_USR}/atelier4_jenkins:latest"
+        sh "docker stop atelier4_jenkins || true"
+        sh "docker rm atelier4_jenkins || true"
+        sh "docker run -d -p 5000:5000 --name atelier4_jenkins ${DOCKER_HUB_CREDENTIALS_USR}/atelier4_jenkins:latest"
+    }
         } 
     }
 }
