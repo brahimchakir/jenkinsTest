@@ -20,7 +20,7 @@ pipeline {
             steps { 
                 sh 'echo "Pushing the Docker image to Docker Hub..."' 
                 sh 'docker login -u ${DOCKER_HUB_CREDENTIALS_USR} -p 
-${DOCKER_HUB_CREDENTIALS_PSW}' 
+                        ${DOCKER_HUB_CREDENTIALS_PSW}' 
                 sh 'docker tag my-python-app ${DOCKER_HUB_CREDENTIALS_USR}/my
 python-app:latest' 
                 sh 'docker push ${DOCKER_HUB_CREDENTIALS_USR}/my-python
